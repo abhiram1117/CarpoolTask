@@ -1,0 +1,543 @@
+body{
+        margin: auto;
+        display: flex;
+        font-family:Arial;
+        
+    }
+    .ya-container{
+        background-image: url('images/img1.png');
+        width: 1000px;
+        background-repeat: no-repeat;
+        height: 750px;
+        background-position: bottom;
+        background-size: contain;
+    }
+    .ya-logo {
+        padding: 35px 0px 0px 45px;
+    }
+    .slogan-container{
+        line-height: 100px;
+    }
+    .slogan-container p {
+        margin: 30px 0 0 45px;
+        font-family: Arial;
+        font-size: 89px;
+        font-weight: 900;
+        color: #334053;
+    }
+    .yellow-font {
+        color: #ffac19;
+    }
+    .violet-font {
+        color: #9319ff;
+    }
+    .caption-container {
+        font-family: Arial;
+        margin: 0px;
+        font-size: 30px;
+        color: #334053;
+        letter-spacing:5px;
+    }
+    .caption-container p{
+        margin:0 0 0 45px;
+    }
+    .signup-container {
+        width: 488px;
+        background-color: #ffac19;
+        color: white;
+       
+    }
+    .signup-container img{
+        position: absolute;
+        width: inherit;
+        margin-top: 90px;
+        height:660px;
+    }
+    .signup-container h1{
+        padding: 125px 0 0 195px;
+        font-family: Arial;
+        border-bottom: 3px solid;
+        display: inline-block;
+    }
+    .signup-form {
+        display: inline-grid;
+        margin: 35px 0 0 110px;
+        grid-gap: 15px;
+    }
+    .signup-form p{
+        margin: 60px 0 0 15px;
+        color: #d4d4d4;
+        position: absolute;
+        font-size: 9px;
+        font-weight:600;
+        font-family:Arial;
+    }
+    .signup-box {
+        border: none;
+        height: 40px;
+        width: 255px;
+        padding-left: 15px;
+        font-family: Arial;
+        font-weight:600;
+        font-size:13px;
+    }
+    .password-box {
+        border: none;
+        height: 20px;
+        width: 255px;
+        padding-left: 15px;
+        font-family: Arial;
+        font-weight: 600;
+        font-size: 20px;
+        padding-top: 22px;
+        padding-bottom: 0px;
+    }
+    .password-box::placeholder{
+        margin-top:10px;
+        color:black;
+    }
+    .signup-box::placeholder{
+        color: #d4d4d4;
+        padding-top:20px;
+    }
+    .signup-border {
+        border: 1px solid;
+        margin: 133px 0 0 225px;
+        width: 50px;
+    }
+    .submit-button {
+        border: none;
+        width: 108px;
+        height: 35px;
+        margin-left: 85px;
+        background-color: #9319ff;
+        color: white;
+        font-family: arial;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        border-radius: 17px;
+    }
+    .login-option {
+        margin: 50px 0 0 150px;
+    }
+    .login-option p{
+        font-size: 13px;
+        letter-spacing: 0.4px;
+        font-family: Arial;
+        margin-bottom:0;
+    }
+    .login-option a{
+        font-size: 18px;
+        color: white;
+        text-decoration: none;
+    }
+    .login-border {
+        border: 1px solid;
+        width: 30px;
+        margin: 5px 0 0 280px;
+    }
+    .login-container {
+        width: 488px;
+        background-color: #9319ff;
+        color: white;
+    }
+    .login-container img{
+        position: absolute;
+        width: inherit;
+        margin-top: 90px;
+        height:660px;
+    }
+    .login-container h1{
+        padding: 115px 0 0 195px;
+        font-family: Arial;
+        margin-bottom: 0;
+    }
+    .loginpage-border {
+        border: 1px solid;
+        margin: 10px 0 0 210px;
+        width: 60px;
+    }
+    .login-form {
+        display: inline-grid;
+        margin: 35px 0 0 110px;
+        grid-gap: 15px;
+
+    }
+    .loginpassword-box {
+        border: none;
+        height: 40px;
+        width: 255px;
+        padding-left: 15px;
+        font-family: Arial;
+        font-weight:600;
+        font-size:13px;
+    }
+    .login-box {
+        border: none;
+        height: 20px;
+        width: 255px;
+        padding-left: 15px;
+        font-family: Arial;
+        font-weight: 600;
+        font-size: 13px;
+        padding-top: 22px;
+        padding-bottom: 0px;
+    }
+    .login-form p{
+        margin: 5px 0 0 15px;
+        color: #d4d4d4;
+        position: absolute;
+        font-size: 9px;
+        font-weight:600;
+        font-family:Arial;
+    }
+    .loginpassword-box::placeholder{
+        margin-top:10px;
+        color:#d4d4d4;
+    }
+    .login-box::placeholder{
+        color: #d4d4d4;
+        padding-top:20px;
+    }
+.login-button {
+    border: none;
+    width: 108px;
+    height: 35px;
+    margin-left: 85px;
+    background-color: #ffac19;
+    color: white;
+    font-family: arial;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 17px;
+}
+    .signup-option {
+        margin: 50px 0 0 150px;
+    }
+    .signup-option p{
+        font-size: 13px;
+        letter-spacing: 0.4px;
+        font-family: Arial;
+        margin-bottom:0;
+    }
+    .signup-option a{
+        font-size: 18px;
+        color: white;
+        text-decoration: none;
+    }
+    .signup-underline {
+        border: 1px solid;
+        width: 50px;
+        margin: 5px 0 0 280px;
+    }
+    .body-container {
+        height:750px;
+        background-image:url('images/img3.png');
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: contain;
+    }
+    .logouser-container{
+        display: flex;
+        width: 1488px;
+    }
+    .logo-container {
+        flex-grow: 0.95;
+    }
+    .user-account {
+        display:flex;
+        margin-top:35px;
+    }
+    .user-account p{
+        margin: 11px 10px 0 0;
+    }
+    .user-account img{
+        width: 40px;
+        height:40px;
+    }
+    .options-container {
+        padding-left:425px;
+        margin-top:30px;
+    }
+    .options-container h1{
+        font-weight:600;
+        margin-bottom:35px;
+    }
+    .bookride-container {
+        width: 250px;
+        height: 160px;
+        background-color: #9319ff;
+        border:none;
+        color:white;
+        font-size: 25px;
+        letter-spacing: 1px;
+        border-radius: 10px;
+    }
+    .offerride-container{
+        width: 250px;
+        height: 160px;
+        margin-left:20px;
+        background-color:#ffac19;
+        border:none;
+        color:white;
+        font-size: 25px;
+        letter-spacing: 1px;
+        border-radius: 10px;
+    }
+    .bookingbody-container {
+        height:750px;
+        background-image:url('images/img4.png');
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: contain;
+    }
+    .booking-rides{
+        display:flex;
+    }
+    .booking-container {
+        width: 350px;
+        margin: 40px 0 0 50px;
+        padding-left: 20px;
+        border: 2px solid #d4d4d4;
+        background-color: white;
+        border-radius:10px;
+    }
+    .booking-details {
+
+    }
+    .booking-form {
+        display:inline-grid;
+    }
+    .booking-form p{
+        font-size:10px;
+        color: #9E9E9E;
+        font-weight: 600;
+    }
+    .booking-form input {
+        border: none;
+        border-bottom: 2px solid #d4d4d4;
+        width: 275px;
+    }
+    .booking-form input::placeholder{
+        color:#d4d4d4
+    }
+    .timebuttons-container {
+
+    }
+    .time-button {
+        background-color: white;
+        border: 1px #9319ff solid;
+        border-radius: 10px;
+        margin: 0 25px 5px 0;
+    }
+    .ride-submit {
+        background-color: #ffac19;
+        color:white;
+        border:none;
+        border-radius: 18px;
+        margin:30px 0 40px;
+        width:100px;
+        height:35px;
+        font-weight:600;
+    }
+    .matched-container{
+        display:flex
+    }
+    .matches-details{
+        width: 350px;
+        margin: 40px 0 0 50px;
+        padding-left: 20px;
+        border: 2px solid #d4d4d4;
+        background-color: white;
+        border-radius:10px;
+    }
+    .yourmatches-container h1{
+        color:#9319ff;
+        margin: 70px 0 0 45px;
+        font-size: 28px;
+        font-weight: 900;
+    }
+    .matched-user{
+        display:flex;
+    }
+    .matched-user h1{
+        color:black;
+        font-weight:600;
+        flex-grow: 0.9;
+        margin: 10px 0;
+    }
+    .matched-user img{
+        width: 40px;
+        height:40px;
+        margin: 10px 0;
+    }
+    .ride-details{
+
+    }
+    .details-container{
+        width: 170px;
+        display: inline-grid;
+    }
+    .details-container p{
+
+    }
+    .detail-heading{
+        font-size:10px;
+        color: #9E9E9E;
+        font-weight: 600;
+        margin-top:5px;
+    }
+    .detail-name{
+        font-size: 15px;
+        margin-top:0;
+        flex-grow:0.5;
+    }
+    .next-button{
+        border:none;
+        color:#9319ff;
+        font-size:15px;
+        background-color:white;
+        width:30px;
+        font-weight:600;
+        margin: 30px 0 0 225px;
+    }
+    .seatbuttons-container{
+        display:flex;
+    }
+    .seat-button{
+        background-color: white;
+        border: 1px #d4d4d4 solid;
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        margin: 0 15px 5px 0;
+    }
+    .seatandprice-container {
+        display:flex;
+    }
+    .price-container h1 {
+        font-size:10px;
+        color: #9E9E9E;
+        font-weight: 600;
+    }
+    .price-container p{
+        font-size:20px;
+        color:black;
+    }
+    .bookedrides-container{
+        flex-grow: 0.1;
+    }
+    .bookedrides-details{        
+        width: 350px;
+        margin: 10px 0 0 50px;
+        padding-left: 20px;
+        border: 2px solid #d4d4d4;
+        background-color: white;
+        border-radius:10px;    
+    }
+    .bookedrides-container button{
+        border: none;
+        border-radius:5px;
+        background-color: #9319ff;
+        color: white;
+        margin: 55px 0 0 50px;
+        width: 175px;
+        height: 40px;
+        font-size: 15px;
+    }
+    .booked-user{
+        display:flex;
+        height:50px;
+    }
+    .booked-user h1{
+        color:black;
+        font-weight:600;
+        flex-grow: 0.9;
+        margin: 10px 0;
+        font-size: 30px;
+    }
+    .booked-user img{
+        width: 40px;
+        height:40px;
+        margin: 10px 0;
+    }
+    .myrides-container{
+        display:flex;
+    }
+    .offeredrides-container{
+        
+    }
+    .offeredrides-details{        
+        width: 350px;
+        margin: 10px 0 0 50px;
+        padding-left: 20px;
+        border: 2px solid #d4d4d4;
+        background-color: white;
+        border-radius:10px;    
+    }
+    .offeredrides-container button{
+        border: none;
+        border-radius:5px;
+        background-color: #ffac19;
+        color: white;
+        margin: 55px 0 0 50px;
+        width: 175px;
+        height: 40px;
+        font-size: 15px;
+    }
+    .offered-user{
+        display:flex;
+        height:50px;
+    }
+    .offered-user h1{
+        color:black;
+        font-weight:600;
+        flex-grow: 0.9;
+        margin: 10px 0;
+        font-size: 30px;
+    }
+    .offered-user img{
+        width: 40px;
+        height:40px;
+        margin: 10px 0;
+    }
+    .from-detail {
+        display:flex;
+    }
+    .violet-dot i{
+        color: #9319ff;
+        font-size: 12px;
+        margin-right:2px;
+    }
+    .grey-dots i{
+        color: #d4d4d4;
+        font-size: 6px;
+        margin: 0 2px;
+    }
+    .location-icon i{
+        color: #9319ff;
+        margin-left:2px;
+    }
+    .offer-toggle{
+        display:flex;
+        align-items: center;
+    }
+    .toggle-button i{
+            color: #ffac19;
+        font-size: 30px;        
+    }
+    .booking-container h1{
+        flex-grow:0.8;
+    }
+    .offer-caption p{
+        margin:0 0 40px;
+        font-size: 12px;
+        color: #9E9E9E;
+        font-weight: 600;
+    }
+    .bookingtoggle-button i{
+        color: #9319ff;
+        font-size: 30px;
+    }
