@@ -12,17 +12,35 @@
     </div>
     </div>
     <div class="user-account">
-        <p><b>John wills</b></p>
-        <img src="images/dp.jpg" />
+        <button onclick="toggleMenu()">
+            <p><b>John wills</b></p>
+            <img src="images/dp.jpg" />
+        </button>
+        <div class="dropdown-menu" id="menuDropdown">
+            <a href="Profile.html">Profile</a>
+            <a href="Myrides.html">My Rides</a>
+            <a href="Login.html">Logout</a>
+        </div>
     </div>
     </div>
     <div class="options-container">
         <h1>Hey John!</h1>
         <div class="buttons-container">
-            <button class="bookride-container">Book a ride</button>
-            <button class="offerride-container">Offer a ride</button>
+            <button class="bookride-container" onclick="location.href='Bookride.html'">Book a ride</button>
+            <button class="offerride-container" onclick="location.href='Offerride.html'">Offer a ride</button>
         </div>
     </div>
 </div>
+<script>
+    function toggleMenu() {
+        var menu = document.getElementById("menuDropdown")
+        if (menu.style.display === "inline-grid") {
+            menu.style.display = "none";
+        }
+        else {
+            menu.style.display = "inline-grid"
+        }
+    }
+</script>
 </body>
 </html>

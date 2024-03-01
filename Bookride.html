@@ -13,8 +13,15 @@
     </div>
     </div>
     <div class="user-account">
-        <p><b>John wills</b></p>
-        <img src="images/dp.jpg" />
+        <button onclick="toggleMenu()">
+            <p><b>John wills</b></p>
+            <img src="images/dp.jpg" />
+        </button>
+        <div class="dropdown-menu" id="menuDropdown">
+            <a href="Profile.html">Profile</a>
+            <a href="Myrides.html">My Rides</a>
+            <a href="Login.html">Logout</a>
+        </div>
     </div>
     </div>
     <div class="booking-rides">
@@ -24,20 +31,25 @@
         <div class="booking-details">
             <form class="booking-form">
                 <p>From</p>
-                <input type="text"/>
+                <input type="text" id="fromInput" oninput="searchLocations('fromInput', 'fromDropdown')" onclick="fromLocationMenu()"/>
+                    <div id="fromDropdown" class="fromdropdown-content"></div>
+                    <span class="error" id="fromValidation"></span>
                 <p>To</p>
-                <input type="text" />
+                <input type="text" id="toInput" oninput="searchLocations('toInput', 'toDropdown')" onclick="toLocationMenu()"/>
+                    <div id="toDropdown" class="todropdown-content"></div>
+                    <span class="error" id="toValidation"></span>
                 <p>Date</p>
-                <input type="text" placeholder="xx/mm/yyyy" />
+                <input type="text" placeholder="xx/mm/yyyy" id="dateInput" onclick="(this.type='date')"/>
+                <span class="error" id="dateValidation"></span>
                 <p>Time</p>
                 <div class="timebuttons-container">
-                    <button class="time-button">5am-9am</button>
-                    <button class="time-button">9am-12pm</button>
-                    <button class="time-button">12pm-3pm</button>
-                    <button class="time-button">3pm-6pm</button>
-                    <button class="time-button">6pm-9pm</button>
+                    <button class="time-button" type="button" onclick="selected('5am-9am')">5am-9am</button>
+                    <button class="time-button" type="button" onclick="selected('9am-12pm')">9am-12pm</button>
+                    <button class="time-button" type="button" onclick="selected('12pm-3pm')">12pm-3pm</button>
+                    <button class="time-button" type="button" onclick="selected('3pm-6pm')">3pm-6pm</button>
+                    <button class="time-button" type="button" onclick="selected('6pm-9pm')">6pm-9pm</button>
                 </div>
-                <button class="ride-submit">Submit</button>
+                <button class="ride-submit" type="button" id="submit-button" onclick="validationChecks()">Submit</button>
             </form>
         </div>
     </div>
@@ -45,8 +57,8 @@
         <h1>
             Your Matches
         </h1>
-        <div class="matched-container">
-        <div class="matches-details">
+        <div class="matched-container" id="matchedContainer">
+        <!--<div class="matches-details" >
             <div class="matched-user">
                 <h1>
                     Clint Barton
@@ -113,10 +125,215 @@
                     <p class="detail-name">01</p>
                 </div>
             </div>
-        </div>
+        </div>-->
         </div>
     </div>
     </div>
 </div>
+<script>
+ //   let locations = [];
+    const locations = [
+    { name: 'Cincinnati' },
+    { name: 'Minneapolis' },
+    { name: 'Indianapolis' },
+    { name: 'Madinson' },
+    { name: 'Chicago' }
+];
+
+//    const matchedRides = [
+//      { from: 'Cincinnati', to: 'Minneapolis', date: '21/11/2024', time: '5am-9am', price: '180$', seatsAvailable: '02' },
+//    { from: 'Cincinnati', to: 'Minneapolis', date: 'xx/mm/yyyy', time: '3pm-6pm', price: '200$', seatsAvailable: '01' },
+//];
+//    const matchedRides = [];
+
+    function displayMatchedRides(matches) {
+        const matchedContainer = document.getElementById('matchedContainer');
+        matchedContainer.innerHTML = '';
+
+        matches.forEach(ride => {
+            const rideElement = document.createElement('div');
+            rideElement.classList.add('matches-details');
+            rideElement.innerHTML = `
+                <div class="matched-user">
+                <h1>Clint Barton </h1>
+                <img src="images/dp.jpg" />
+                </div >
+                <div class="ride-details">
+                    <div class="details-container">
+                            <p class="detail-heading">From</p>
+                            <div class="from-detail"><p class="detail-name">${ride.from}</p><div class="violet-dot"><i class="fas fa-circle"></i></div><div class="grey-dots"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i></div><div class="location-icon"><i class="fas fa-map-marker-alt"></i></div></div>
+                    </div>
+                    <div class="details-container">
+                        <p class="detail-heading">To</p>
+                        <p class="detail-name">${ride.to}</p>
+                    </div>
+                    <div class="details-container">
+                        <p class="detail-heading">Date</p>
+                        <p class="detail-name">${ride.date}</p>
+                    </div>
+                    <div class="details-container">
+                        <p class="detail-heading">Time</p>
+                        <p class="detail-name">${ride.time}</p>
+                    </div>
+                    <div class="details-container">
+                        <p class="detail-heading">Price</p>
+                        <p class="detail-name">${ride.price}</p>
+                    </div>
+                    <div class="details-container">
+                        <p class="detail-heading">Seat Availability</p>
+                        <p class="detail-name">${ride.seatsAvailable}</p>
+                    </div>
+                </div>
+</div >
+            `;
+            matchedContainer.appendChild(rideElement);
+        });
+    }
+    function selected(time) {
+        const buttons = document.querySelectorAll('.time-button');
+        buttons.forEach(button => button.classList.remove('selected'));
+        event.target.classList.add('selected');
+    
+    }
+ //   async function fetchLocations(query){
+ //       const response = await fetch(`https://localhost:7057/api/Locations?query=${query}`);
+ //       const data = await response.json();
+ //       return data.locations;
+ //   }
+    async function fetchLocations(query){
+        return locations.filter(location => location.name.toLowerCase().includes(query.toLowerCase()))
+    }
+
+    async function fetchRides(from, to, date, time){
+        const response = await fetch('https://localhost:7057/api/OfferRides');
+        const rides = await response.json();
+
+        const matchedRides = rides.filter(ride =>
+        ride.from.toLowerCase()=== from.toLowerCase() &&
+        ride.to.toLowerCase()=== to.toLowerCase() &&
+        ride.date=== date &&
+        ride.time === time);
+        return matchedRides;
+    }
+    
+    async function searchLocations(inputElement, dropdownElement){
+        const query = document.getElementById(inputElement).value;
+        const locations = await fetchLocations(query)
+        displayLocations(locations, inputElement, dropdownElement)
+    }
+    function displayLocations(locations, inputElement, dropdownElement){
+        const input = document.getElementById(inputElement);
+        const dropdown = document.getElementById(dropdownElement);
+        dropdown.innerHTML= '';
+        locations.forEach(location => {
+        const option = document.createElement('div');
+        option.classList.add('dropdown-item');
+        option.textContent = location.name;
+        option.addEventListener('click', () => { 
+            input.value=location.name;
+            dropdown.innerHTML='';
+
+        });
+        dropdown.appendChild(option);
+    })
+    }
+    function fromLocationMenu(){
+        var menu =document.getElementById('fromDropdown')
+        if(menu.style.display=== 'block'){
+            menu.style.display='none';
+        }
+        else{
+            menu.style.display='block';
+        }
+        
+        
+    }
+    function toLocationMenu(){
+        var menu =document.getElementById('toDropdown')
+        if(menu.style.display=== 'block'){
+            menu.style.display='none';
+        }
+        else{
+            menu.style.display='block';
+        }     
+    }
+    document.getElementById('fromInput').addEventListener('input', ()=>{
+        searchLocations('fromInput', 'fromDropdown');
+    })
+    document.getElementById('toInput').addEventListener('input', ()=>{
+        searchLocations('toInput', 'toDropdown');
+    })
+    displayLocations(locations,'fromInput','fromDropdown');
+    displayLocations(locations,'toInput','toDropdown');
+    //function searchLocation(){
+    //    const locationInput = document.getElementById('fromInput').value.toLowerCase();
+    //    const matchedLocation = locations.filter(location.toLowerCase().includes(locationInput));
+    
+    //}
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+
+        const from = document.getElementById('fromInput').value;
+        const to = document.getElementById('toInput').value;
+        const date = document.getElementById('dateInput').value;
+        const time = document.querySelector('.time-button.selected').innerText;
+
+        const matchedRides = await fetchRides(from, to, date, time);
+            displayMatchedRides(matchedRides);
+
+        //if (!selectedButton) {
+        //    console.error("No time button selected.");
+        //    return;
+        //}
+
+        //const time = selectedButton.innerText;
+
+//        const matched = matchedRides.filter(ride =>
+//            ride.from.toLowerCase() === from.toLowerCase() &&
+//            ride.to.toLowerCase() === to.toLowerCase() &&
+//            ride.date === date &&
+//            ride.time === time
+//        );
+//        displayMatchedRides(matched);
+
+        fetch('https://localhost:7057/api/BookingRides', {
+            method: 'POST',
+            headers: {
+                contentType: 'application/json'
+            },
+            body: JSON.stringify({ from, to, date, time })
+
+        })
+    }
+    const submitButton = document.getElementById('submit-button');
+    submitButton.addEventListener('click', handleSubmit);
+
+    function toggleMenu() {
+        var menu = document.getElementById("menuDropdown")
+        if (menu.style.display === "inline-grid") {
+            menu.style.display = "none";
+        }
+        else {
+            menu.style.display = "inline-grid"
+        }
+    }
+    function validations(element,elementError){
+    const input = document.getElementById(element).value;
+    document.getElementById(elementError).textContent="";
+    if(input===""){
+          document.getElementById(elementError).textContent="Field Required";
+    }
+}
+function validationChecks(){
+    validations('fromInput', 'fromValidation');
+    validations('toInput', 'toValidation');
+    validations('dateInput', 'dateValidation');
+}
+    
+
+
+    
+</script>
 </body>
 </html>

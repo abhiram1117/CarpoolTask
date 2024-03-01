@@ -18,14 +18,20 @@
     <div class="login-container">
         <img src="images/img2.png" />
         <h1>Log In</h1>
+        <div class="login-details">
         <div class="loginpage-border"></div>
-        <form class="login-form">
-            <input type="email" class="login-box" placeholder="Enter Email Id" />
+        <form class="login-form" id="loginForm">
+            <input type="email" class="login-box" id="loginEmail" placeholder="Enter Email Id" />
             <p>Enter Email Id</p>
-            <input type="password" class="loginpassword-box" placeholder="Enter Password" />
-            <input type="submit" class="login-button" />
+            <span class="error" id="emailError"></span>
+            <input type="password" class="loginpassword-box" id="loginPassword" placeholder="Enter Password" />
+            <span class="error" id="passwordError"></span>
+            <input type="submit" class="login-button" onclick="loginValidationChecks()"/>
         </form>
-        <div class=" signup-option"><p>Not a member yet? <a href="#signup"><b>SIGN UP</b></a></p></div><div class="signup-underline"></div>
+        <div class=" signup-option"><p>Not a member yet? <a href="Signup.html"><b>SIGN UP</b></a></p></div><div class="signup-underline"></div>
     </div>
+    </div>
+    <script src="Validations.js"></script>
+    <script src="Login.js"></script>
 </body>
 </html>

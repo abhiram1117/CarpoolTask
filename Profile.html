@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="CarpoolStylesheet.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="bookingbody-container">
+        <div class="logouser-container">
+            <div class="logo-container">
+                <div class="ya-logo">
+                    <img src="images/logo.png" />
+                </div>
+            </div>
+            <div class="user-account">
+                <button onclick="toggleMenu()">
+                    <p><b>John wills</b></p>
+                    <img src="images/dp.jpg" />
+                </button>
+                <div class="dropdown-menu" id="menuDropdown">
+                    <a href="Profile.html">Profile</a>
+                    <a href="Myrides.html">My Rides</a>
+                    <a href="Login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="userprofile">
+            <div class="profile-user">
+                <h1>
+                    Micheal Douglas
+                </h1>
+                <img src="images/dp.jpg" />
+            </div>
+            <div class="user-details">
+                <div class="userdetails-container">
+                    <p class="userdetail-heading">EmailID</p>
+                    <p class="userdetail-name">1234@mail.com</p>
+                </div>
+                <div class="userdetails-container">
+                    <p class="userdetail-heading">joined On</p>
+                    <p class="userdetail-name">Date</p>
+                </div>
+                <div class="userdetails-container">
+                    <p class="userdetail-heading">Rides Booked</p>
+                    <p class="detail-name">50</p>
+                </div>
+                <div class="userdetails-container">
+                    <p class="userdetail-heading">Rides Offered</p>
+                    <p class="userdetail-name">20</p>
+                </div>
+                <div class="userdetails-container">
+                    <p class="userdetail-heading">Experience</p>
+                    <p class="userdetail-name">1 year</p>
+                </div>                        
+            </div>
+        </div>
+    </div>
+    
+
+<script>
+    function toggleMenu() {
+        var menu = document.getElementById("menuDropdown")
+        if (menu.style.display === "inline-grid") {
+            menu.style.display = "none";
+        }
+        else {
+            menu.style.display = "inline-grid"
+        }
+    }
+</script>
+</body>
+</html>

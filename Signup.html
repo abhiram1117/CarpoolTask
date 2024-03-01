@@ -18,16 +18,25 @@
     <div class="signup-container">
         <img src="images/imgg2.png" />
 <!--       <h1>Sign Up</h1> -->
+       <div class="signup-details">
         <div class="signup-border"></div>
-        <form class="signup-form">
-            <input type="email" class="signup-box" placeholder="Enter Email Id"/>
+        <form class="signup-form" id="signupForm"> 
+            <input type="email" class="signup-box" id="signupEmail" placeholder="Enter Email Id"/>
+            <span id="emailError" class="error"></span>
             <p>Enter Password</p>
-            <input type="password" class="password-box" placeholder="*******" />
-            <input type="password" class="signup-box" placeholder="Confirm Password" />
-            <input type="submit" class="submit-button" />
+            <input type="password" class="password-box" id="signupPassword" placeholder="*******" />
+            <span id="passwordError" class="error"></span>
+            <input type="password" class="signup-box" id="confirmPassword" placeholder="Confirm Password" />
+            <span id="confirmPasswordError" class="error"></span>
+            <input type="submit" class="submit-button" onclick="signinValidationChecks()"/>
         </form>
-        <div class=" login-option"><p>Already a member? <a href="#login"><b>LOG IN</b></a></p></div><div class="login-border"></div>
+        <div class=" login-option"><p>Already a member? <a href="Login.html"><b>LOG IN</b></a></p></div><div class="login-border"></div>
     </div>
+</div>
+
+    <script src="Validations.js"></script>
+    <script src="Signup.js"></script>
+    
 </body>
 
 </html>

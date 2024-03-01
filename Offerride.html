@@ -13,8 +13,15 @@
     </div>
     </div>
     <div class="user-account">
-        <p><b>John wills</b></p>
-        <img src="images/dp.jpg" />
+        <button onclick="toggleMenu()">
+            <p><b>John wills</b></p>
+            <img src="images/dp.jpg" />
+        </button>
+        <div class="dropdown-menu" id="menuDropdown">
+            <a href="Profile.html">Profile</a>
+            <a href="Myrides.html">My Rides</a>
+            <a href="Login.html">Logout</a>
+        </div>
     </div>
     </div>
     <div class="booking-rides">
@@ -24,41 +31,49 @@
             <div class="booking-details">
                 <form class="booking-form">
                     <p>From</p>
-                    <input type="text" />
+                    <input type="text" id="fromInput" oninput="searchLocations('fromInput', 'fromDropdown')" onclick="fromLocationMenu()"/>
+                    <div id="fromDropdown" class="fromdropdown-content"></div>
+                    <span class="error" id="fromValidation"></span>
                     <p>To</p>
-                    <input type="text" />
+                    <input type="text" id="toInput" oninput="searchLocations('toInput', 'toDropdown')" onclick="toLocationMenu()"/>
+                    <div id="toDropdown" class="todropdown-content"></div>
+                    <span class="error" id="toValidation"></span>
                     <p>Date</p>
-                    <input type="text" placeholder="xx/mm/yyyy" />
+                    <input type="text" placeholder="xx/mm/yyyy" id="dateInput" onclick="(this.type='date')"/>
+                    <span class="error" id="dateValidation"></span>
                     <p>Time</p>
                     <div class="timebuttons-container">
-                        <button class="time-button">5am-9am</button>
-                        <button class="time-button">9am-12pm</button>
-                        <button class="time-button">12pm-3pm</button>
-                        <button class="time-button">3pm-6pm</button>
-                        <button class="time-button">6pm-9pm</button>
+                        <button class="time-button" type="button" onclick="selected('5am-9am')">5am-9am</button>
+                        <button class="time-button" type="button" onclick="selected('9am-12pm')">9am-12pm</button>
+                        <button class="time-button" type="button" onclick="selected('12pm-3pm')">12pm-3pm</button>
+                        <button class="time-button" type="button" onclick="selected('3pm-6pm')">3pm-6pm</button>
+                        <button class="time-button" type="button" onclick="selected('6pm-9pm')">6pm-9pm</button>
                     </div>
-                    <button class="next-button">Next>></button>
+                    <button class="next-button" type="button" onclick="validationChecks()">Next>></button>
                 </form>
             </div>
         </div>
-        <div class="booking-container">
+        <div class="bookingsubmit-container" id="offerRideSubmit">
             <div class="offer-toggle"><h1>Offer a Ride</h1><div class="toggle-button"><i class="fas fa-toggle-on"></i></div></div>
             <div class="offer-caption"><p>we get you matches asap !</p></div>
             <div class="booking-details">
-                <form class="booking-form">
+                <form class="booking-form" id="submitOfferRideForm">
                     <p>Stop 1</p>
-                    <input type="text" />
+                    <input type="text" id="stop1Input" oninput="searchLocations('stop1Input', 'stop1Dropdown')" onclick="stop1LocationMenu()"/>
+                    <div id="stop1Dropdown" class="stop1dropdown-content"></div>
                     <p>Stop 2</p>
-                    <input type="text" />
+                    <input type="text" id="stop2Input" oninput="searchLocations('stop2Input', 'stop2Dropdown')" onclick="stop2LocationMenu()"/>
+                    <div id="stop2Dropdown" class="stop2dropdown-content"></div>
                     <p>Stop 3</p>
-                    <input type="text" />
+                    <input type="text" id="stop3Input" oninput="searchLocations('stop3Input', 'stop3Dropdown')" onclick="stop3LocationMenu()"/>
+                    <div id="stop3Dropdown" class="stop3dropdown-content"></div>
                     <div class="seatandprice-container">
                         <div class="seats-container">
                             <p>Available Seats</p>
                             <div class="seatbuttons-container">
-                                <button class="seat-button">1</button>
-                                <button class="seat-button">2</button>
-                                <button class="seat-button">3</button>
+                                <button type="button" class="seat-button">1</button>
+                                <button type="button" class="seat-button">2</button>
+                                <button type="button" class="seat-button">3</button>
                             </div>
                         </div>
                         <div class="price-container">
@@ -66,11 +81,191 @@
                             <p>$180</p>
                         </div>
                     </div>
-                    <button class="ride-submit">Submit</button>
+                    <button class="ride-submit" onclick="submitOfferRide().validationChecks()">Submit</button>
                 </form>
             </div>
         </div>
     </div>
     </div>
+<script>
+    //   let locations = [];
+    const locations = [
+    { name: 'Cincinnati' },
+    { name: 'Minneapolis' },
+    { name: 'Indianapolis' },
+    { name: 'Madinson' },
+    { name: 'Chicago' }
+];
+    let selectedTime = '';
+
+    function selected(time) {
+        
+        const buttons = document.querySelectorAll('.time-button');
+        buttons.forEach(button => button.classList.remove('selected'));
+        event.target.classList.add('selected');
+    }
+    function submitForm() {
+        var submitForm = document.getElementById("offerRideSubmit")
+        if (submitForm.style.display === "block") {
+            submitForm.style.display = "none";
+        }
+        else {
+            submitForm.style.display = "block"
+        }
+    }
+    function submitOfferRide() {
+        event.preventDefault();
+
+        const from = document.getElementById('fromInput').value;
+        const to = document.getElementById('toInput').value;
+        const date = document.getElementById('dateInput').value;
+        const time = document.querySelector('.time-button.selected').innerText;
+        const stop1 = document.getElementById('stop1Input').value;
+        const stop2 = document.getElementById('stop2Input').value;
+        const stop3 = document.getElementById('stop3Input').value;
+
+        const rideData = {
+            from: from,
+            to: to,
+            date: date,
+            time: time,
+            stops: [stop1, stop2, stop3]
+
+        };
+
+        fetch('https://localhost:7057/api/OfferRides', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(rideData)
+        })
+    }
+
+    function toggleMenu() {
+        var menu = document.getElementById("menuDropdown")
+        if (menu.style.display === "inline-grid") {
+            menu.style.display = "none";
+        }
+        else {
+            menu.style.display = "inline-grid"
+        }
+    }
+    //   async function fetchLocations(query){
+ //       const response = await fetch(`https://localhost:7057/api/Locations?query=${query}`);
+ //       const data = await response.json();
+ //       return data.locations;
+ //   }
+ async function fetchLocations(query){
+        return locations.filter(location => location.name.toLowerCase().includes(query.toLowerCase()))
+    }
+
+    
+    async function searchLocations(inputElement, dropdownElement){
+        const query = document.getElementById(inputElement).value;
+        const locations = await fetchLocations(query)
+        displayLocations(locations, inputElement, dropdownElement)
+    }
+    function displayLocations(locations, inputElement, dropdownElement){
+        const input = document.getElementById(inputElement);
+        const dropdown = document.getElementById(dropdownElement);
+        dropdown.innerHTML= '';
+        locations.forEach(location => {
+        const option = document.createElement('div');
+        option.classList.add('dropdown-item');
+        option.textContent = location.name;
+        option.addEventListener('click', () => { 
+            input.value=location.name;
+            dropdown.innerHTML='';
+
+        });
+        dropdown.appendChild(option);
+    })
+    }
+    function fromLocationMenu(){
+        var menu =document.getElementById('fromDropdown')
+        if(menu.style.display=== 'block'){
+            menu.style.display='none';
+        }
+        else{
+            menu.style.display='block';
+        }
+        
+        
+    }
+    function toLocationMenu(){
+        var menu =document.getElementById('toDropdown')
+        if(menu.style.display=== 'block'){
+            menu.style.display='none';
+        }
+        else{
+            menu.style.display='block';
+        }     
+    }
+    function stop1LocationMenu(){
+        var menu =document.getElementById('stop1Dropdown')
+        if(menu.style.display=== 'block'){
+            menu.style.display='none';
+        }
+        else{
+            menu.style.display='block';
+        }
+        
+        
+    }
+    function stop2LocationMenu(){
+        var menu =document.getElementById('stop2Dropdown')
+        if(menu.style.display=== 'block'){
+            menu.style.display='none';
+        }
+        else{
+            menu.style.display='block';
+        }
+        
+        
+    }
+    function stop3LocationMenu(){
+        var menu =document.getElementById('stop3Dropdown')
+        if(menu.style.display=== 'block'){
+            menu.style.display='none';
+        }
+        else{
+            menu.style.display='block';
+        }
+        
+        
+    }
+    document.getElementById('fromInput').addEventListener('input', ()=>{
+        searchLocations('fromInput', 'fromDropdown');
+    })
+    document.getElementById('toInput').addEventListener('input', ()=>{
+        searchLocations('toInput', 'toDropdown');
+    })
+    displayLocations(locations,'fromInput','fromDropdown');
+    displayLocations(locations,'toInput','toDropdown');
+    displayLocations(locations,'stop1Input','stop1Dropdown');
+    displayLocations(locations,'stop2Input','stop2Dropdown');
+    displayLocations(locations,'stop3Input','stop3Dropdown');
+
+    function validations(element,elementError){
+    const input = document.getElementById(element).value;
+    document.getElementById(elementError).textContent="";
+    if(input===""){
+          document.getElementById(elementError).textContent="Field Required";
+    }
+}
+function validationChecks(){
+    validations('fromInput', 'fromValidation');
+    validations('toInput', 'toValidation');
+    validations('dateInput', 'dateValidation');
+
+    if(document.getElementById('fromInput').value !=="",
+    document.getElementById('toInput').value !=="",
+    document.getElementById('dateInput').value !==""
+    ){
+        submitForm();
+    }
+}
+</script>
 </body>
 </html>

@@ -59,13 +59,17 @@ body{
         border-bottom: 3px solid;
         display: inline-block;
     }
+    .signup-details{
+        position: absolute;
+        top: 0;
+    }
     .signup-form {
         display: inline-grid;
         margin: 35px 0 0 110px;
         grid-gap: 15px;
     }
     .signup-form p{
-        margin: 60px 0 0 15px;
+        margin: 78px 0 0 15px;
         color: #d4d4d4;
         position: absolute;
         font-size: 9px;
@@ -117,6 +121,7 @@ body{
         font-weight: 600;
         letter-spacing: 0.5px;
         border-radius: 17px;
+        cursor: pointer;
     }
     .login-option {
         margin: 50px 0 0 150px;
@@ -157,6 +162,9 @@ body{
         border: 1px solid;
         margin: 10px 0 0 210px;
         width: 60px;
+    }
+    .login-details{
+        position: absolute;
     }
     .login-form {
         display: inline-grid;
@@ -212,6 +220,7 @@ body{
     font-weight: 600;
     letter-spacing: 0.5px;
     border-radius: 17px;
+    cursor: pointer;
 }
     .signup-option {
         margin: 50px 0 0 150px;
@@ -247,15 +256,39 @@ body{
         flex-grow: 0.95;
     }
     .user-account {
-        display:flex;
+        display:block;
         margin-top:35px;
+    }
+    .user-account button{
+        border: none;
+        background-color:white;
+        display:flex;
+        cursor: pointer;
     }
     .user-account p{
         margin: 11px 10px 0 0;
+        font-size:15px;
+    }
+    .user-account a:hover{
+        background-color: #9319ff;
+        color:white;
     }
     .user-account img{
         width: 40px;
         height:40px;
+    }
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        width: 120px;
+        height: 100px;
+        align-items: center;
+        text-align: center;
+    }
+    .dropdown-menu a{
+        color:#9E9E9E;
+        text-decoration:none;
     }
     .options-container {
         padding-left:425px;
@@ -274,6 +307,7 @@ body{
         font-size: 25px;
         letter-spacing: 1px;
         border-radius: 10px;
+        cursor: pointer;
     }
     .offerride-container{
         width: 250px;
@@ -285,6 +319,7 @@ body{
         font-size: 25px;
         letter-spacing: 1px;
         border-radius: 10px;
+        cursor: pointer;
     }
     .bookingbody-container {
         height:750px;
@@ -297,6 +332,15 @@ body{
         display:flex;
     }
     .booking-container {
+        width: 350px;
+        margin: 40px 0 0 50px;
+        padding-left: 20px;
+        border: 2px solid #d4d4d4;
+        background-color: white;
+        border-radius:10px;
+    }
+    .bookingsubmit-container {
+        display:none;
         width: 350px;
         margin: 40px 0 0 50px;
         padding-left: 20px;
@@ -319,9 +363,54 @@ body{
         border: none;
         border-bottom: 2px solid #d4d4d4;
         width: 275px;
+        outline: none;
     }
     .booking-form input::placeholder{
         color:#d4d4d4
+    }
+    .fromdropdown-content{
+        display: none;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        position: absolute;
+        margin: 50px 0 0;
+        background-color: white;
+        width: 275px;
+    }
+    .todropdown-content{
+        display: none;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        position: absolute;
+        margin: 100px 0 0;
+        background-color: white;
+        width: 275px;
+    }
+    .stop1dropdown-content{
+        display: none;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        position: absolute;
+        margin: 50px 0 0;
+        background-color: white;
+        width: 275px;
+    }
+    .stop2dropdown-content{
+        display: none;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        position: absolute;
+        margin: 100px 0 0;
+        background-color: white;
+        width: 275px;
+    }
+    .stop3dropdown-content{
+        display: none;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        position: absolute;
+        margin: 150px 0 0;
+        background-color: white;
+        width: 275px;
+    }
+    .dropdown-item{
+        font-size: 15px;
+        cursor: pointer;
     }
     .timebuttons-container {
 
@@ -331,6 +420,19 @@ body{
         border: 1px #9319ff solid;
         border-radius: 10px;
         margin: 0 25px 5px 0;
+        cursor:pointer;
+    }
+    .time-button:hover{
+        background-color: #9319ff;
+        color:white;
+        border-radius: 10px;
+        margin: 0 25px 5px 0;
+        cursor:pointer;
+    }
+
+    .time-button:focus{
+        background-color: #9319ff;
+        color:white;
     }
     .ride-submit {
         background-color: #ffac19;
@@ -341,6 +443,7 @@ body{
         width:100px;
         height:35px;
         font-weight:600;
+        cursor: pointer;
     }
     .matched-container{
         display:flex
@@ -401,7 +504,8 @@ body{
         background-color:white;
         width:30px;
         font-weight:600;
-        margin: 30px 0 0 225px;
+        margin: 30px 0 55px 225px;
+        cursor: pointer;
     }
     .seatbuttons-container{
         display:flex;
@@ -413,6 +517,15 @@ body{
         height: 30px;
         border-radius: 15px;
         margin: 0 15px 5px 0;
+        cursor: pointer;
+    }
+    .seat-button:hover{
+        background-color: #9319ff;
+        color:white;
+    }
+    .seat-button:focus{
+        background-color: #9319ff;
+        color:white;
     }
     .seatandprice-container {
         display:flex;
@@ -531,6 +644,9 @@ body{
     .booking-container h1{
         flex-grow:0.8;
     }
+    .bookingsubmit-container h1{
+        flex-grow:0.8;
+    }
     .offer-caption p{
         margin:0 0 40px;
         font-size: 12px;
@@ -540,4 +656,50 @@ body{
     .bookingtoggle-button i{
         color: #9319ff;
         font-size: 30px;
+    }
+    .error {
+        color:red;
+    }
+    .userprofile {
+        width: 500px;
+        margin: 10px 0 0 500px;
+        padding-left: 20px;
+        border: 2px solid #d4d4d4;
+        background-color: white;
+        border-radius: 10px;
+        height: 500px;
+    }
+    .user-details{
+
+    }
+    .userdetails-container {
+        width: 170px;
+        margin:10px;
+    }
+    .userdetail-heading {
+        font-size: 15px;
+        color: #9E9E9E;
+        font-weight: 600;
+        margin: 25px 0 0 0;
+    }
+    .userdetail-name {
+        font-size: 15px;
+        margin: 5px;
+        
+    }
+    .profile-user {
+        display: flex;
+        height: 100px;
+    }
+    .profile-user h1 {
+        color: black;
+        font-weight: 600;
+        flex-grow: 0.9;
+        margin: 25px 0;
+        font-size: 40px;
+    }
+    .profile-user img{
+        width: 80px;
+        height:80px;
+        margin: 10px 0;
     }
