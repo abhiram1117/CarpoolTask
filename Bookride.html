@@ -131,20 +131,21 @@
     </div>
 </div>
 <script>
- //   let locations = [];
-    const locations = [
-    { name: 'Cincinnati' },
-    { name: 'Minneapolis' },
-    { name: 'Indianapolis' },
-    { name: 'Madinson' },
-    { name: 'Chicago' }
-];
+//    let locations = [];
+ //   const locations = [
+ //   { name: 'Cincinnati' },
+ //   { name: 'Minneapolis' },
+ //   { name: 'Indianapolis' },
+ //   { name: 'Madinson' },
+ //   { name: 'Chicago' }
+//];
 
 //    const matchedRides = [
 //      { from: 'Cincinnati', to: 'Minneapolis', date: '21/11/2024', time: '5am-9am', price: '180$', seatsAvailable: '02' },
 //    { from: 'Cincinnati', to: 'Minneapolis', date: 'xx/mm/yyyy', time: '3pm-6pm', price: '200$', seatsAvailable: '01' },
 //];
 //    const matchedRides = [];
+let locations = [];
 
     function displayMatchedRides(matches) {
         const matchedContainer = document.getElementById('matchedContainer');
@@ -195,14 +196,16 @@
         event.target.classList.add('selected');
     
     }
- //   async function fetchLocations(query){
- //       const response = await fetch(`https://localhost:7057/api/Locations?query=${query}`);
- //       const data = await response.json();
- //       return data.locations;
- //   }
-    async function fetchLocations(query){
-        return locations.filter(location => location.name.toLowerCase().includes(query.toLowerCase()))
+    async function fetchLocations(){
+        const response = await fetch('https://localhost:7057/api/Locations');
+        locations = await response.json();
+        displayLocations(locations,'fromInput','fromDropdown');
+        displayLocations(locations,'toInput','toDropdown');
     }
+    document.addEventListener('DOMContentLoaded', fetchLocations);
+//    async function fetchLocations(query){
+//        return locations.filter(location => location.name.toLowerCase().includes(query.toLowerCase()))
+//    }
 
     async function fetchRides(from, to, date, time){
         const response = await fetch('https://localhost:7057/api/OfferRides');
@@ -218,8 +221,9 @@
     
     async function searchLocations(inputElement, dropdownElement){
         const query = document.getElementById(inputElement).value;
-        const locations = await fetchLocations(query)
-        displayLocations(locations, inputElement, dropdownElement)
+        const filteredLocations = locations.filter(location =>
+        location.name.toLowerCase().includes(query.toLowerCase()));
+       displayLocations(filteredLocations, inputElement, dropdownElement)
     }
     function displayLocations(locations, inputElement, dropdownElement){
         const input = document.getElementById(inputElement);
@@ -263,8 +267,8 @@
     document.getElementById('toInput').addEventListener('input', ()=>{
         searchLocations('toInput', 'toDropdown');
     })
-    displayLocations(locations,'fromInput','fromDropdown');
-    displayLocations(locations,'toInput','toDropdown');
+//    displayLocations(locations,'fromInput','fromDropdown');
+//    displayLocations(locations,'toInput','toDropdown');
     //function searchLocation(){
     //    const locationInput = document.getElementById('fromInput').value.toLowerCase();
     //    const matchedLocation = locations.filter(location.toLowerCase().includes(locationInput));
@@ -300,7 +304,7 @@
         fetch('https://localhost:7057/api/BookingRides', {
             method: 'POST',
             headers: {
-                contentType: 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({ from, to, date, time })
 

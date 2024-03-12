@@ -22,7 +22,11 @@ builder.Services.AddCors(options =>
         
     });
 });
-var app = builder.Build();  
+var app = builder.Build();
+
+app.UseCors();
+
+app.UseRouting();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -39,6 +43,3 @@ app.MapControllers();
 
 app.Run();
 
-app.UseCors();
-
-app.UseRouting();
